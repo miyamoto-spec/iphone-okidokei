@@ -134,25 +134,25 @@ body {
 }
 
 .cell .label {
-  font-size: clamp(0.9rem, 3.4vw, 1.3rem);
-  opacity: 0.78;
+  font-size: clamp(1.2rem, 4.6vw, 1.8rem);
+  opacity: 0.85;
 }
 .cell .icon {
-  font-size: clamp(2rem, 9vw, 3.4rem);
+  font-size: clamp(2.6rem, 12vw, 4.6rem);
   line-height: 1;
 }
 .cell .temp {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(1.2rem, 5.4vw, 2.1rem);
+  font-size: clamp(1.6rem, 7vw, 2.8rem);
   font-weight: 300;
 }
 .cell .pop {
-  font-size: clamp(0.85rem, 3vw, 1.1rem);
+  font-size: clamp(1.1rem, 4vw, 1.55rem);
   color: var(--amber-dim);
 }
 .daily .cell .temp-range {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(0.9rem, 3.6vw, 1.4rem);
+  font-size: clamp(1.2rem, 4.8vw, 1.9rem);
   font-weight: 300;
   white-space: nowrap;
   letter-spacing: -0.02em;
@@ -164,7 +164,7 @@ body {
   margin-top: auto;
   background: var(--news-bg);
   border-top: 1px solid var(--amber-faint);
-  height: clamp(64px, 10vh, 96px);
+  height: clamp(80px, 12vh, 120px);
   overflow: hidden;
   position: relative;
 }
@@ -181,10 +181,10 @@ body {
   display: inline-block;
   white-space: nowrap;
   padding-left: 2vw;
-  font-size: clamp(2rem, 6.8vw, 2.6rem);
+  font-size: clamp(2.6rem, 9vw, 3.4rem);
   color: var(--amber);
   opacity: 0.95;
-  animation: ticker 80s linear infinite;
+  animation: ticker 90s linear infinite;
   font-weight: 400;
 }
 
