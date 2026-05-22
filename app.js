@@ -111,14 +111,16 @@
   function renderHourly(hourly) {
     if (!hourly || !hourly.time) return;
 
-    // 次の1時間ブロック以降から6つ取得
+    // 直近の予報ポイント以降から、2 時間刻みで 4 つ取得
     const now = new Date();
     const nowIdx = hourly.time.findIndex((t) => new Date(t) >= now);
     const startIdx = nowIdx === -1 ? 0 : nowIdx;
+    const STEP = 2;
+    const COUNT = 4;
 
     const cells = [];
-    for (let i = 0; i < 6; i++) {
-      const idx = startIdx + i;
+    for (let i = 0; i < COUNT; i++) {
+      const idx = startIdx + i * STEP;
       if (idx >= hourly.time.length) break;
       const t    = new Date(hourly.time[idx]);
       const code = hourly.weather_code[idx];
