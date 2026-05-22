@@ -47,7 +47,11 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  /* 画面下のニュースバー分の余白を確保 */
+  padding-bottom: calc(clamp(72px, 11vh, 110px) + env(safe-area-inset-bottom, 0px));
 }
 
 /* ===== Clock ===== */
@@ -102,7 +106,7 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   gap: 1vh;
-  padding: 0.6vh 3vw 0.6vh;
+  padding: 0.6vh 3vw 1vh;
   overflow: hidden;
 }
 
@@ -134,39 +138,42 @@ body {
 }
 
 .cell .label {
-  font-size: clamp(1.2rem, 4.6vw, 1.8rem);
+  font-size: clamp(1.05rem, 4vw, 1.6rem);
   opacity: 0.85;
 }
 .cell .icon {
-  font-size: clamp(2.6rem, 12vw, 4.6rem);
+  font-size: clamp(2.2rem, 10vw, 3.8rem);
   line-height: 1;
 }
 .cell .temp {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(1.6rem, 7vw, 2.8rem);
+  font-size: clamp(1.4rem, 6vw, 2.4rem);
   font-weight: 300;
 }
 .cell .pop {
-  font-size: clamp(1.1rem, 4vw, 1.55rem);
+  font-size: clamp(1rem, 3.6vw, 1.4rem);
   color: var(--amber-dim);
 }
 .daily .cell .temp-range {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(1.2rem, 4.8vw, 1.9rem);
+  font-size: clamp(1.05rem, 4.2vw, 1.6rem);
   font-weight: 300;
   white-space: nowrap;
   letter-spacing: -0.02em;
 }
 
-/* ===== News ticker ===== */
+/* ===== News ticker (画面下に絶対固定) ===== */
 .news-section {
-  flex: 0 0 auto;
-  margin-top: auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: var(--news-bg);
   border-top: 1px solid var(--amber-faint);
-  height: clamp(80px, 12vh, 120px);
+  height: calc(clamp(72px, 11vh, 110px) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   overflow: hidden;
-  position: relative;
+  z-index: 5;
 }
 
 .news-ticker {
