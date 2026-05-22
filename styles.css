@@ -1,0 +1,269 @@
+/* ===== Reset & base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --amber: #ffb13b;
+  --amber-dim: #b8741f;
+  --amber-faint: #4a2f10;
+  --bg: #000000;
+  --news-bg: #050505;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--amber);
+  font-family: 'Noto Sans JP', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+/* ===== Rotator (180° flip) ===== */
+.rotator {
+  position: fixed;
+  inset: 0;
+  transition: transform 0.4s ease;
+  transform-origin: center center;
+}
+.rotator.upside-down {
+  transform: rotate(180deg);
+}
+
+/* ===== App layout ===== */
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* ===== Clock ===== */
+.clock-section {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.4vh 2vw 0.4vh;
+  line-height: 1;
+}
+
+.date {
+  font-size: clamp(1rem, 4vw, 1.7rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+  margin-bottom: 0.4vh;
+}
+
+.clock {
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  font-weight: 200;
+  font-size: clamp(5rem, 28vw, 18rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-shadow: 0 0 22px rgba(255, 177, 59, 0.18);
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.time-digit { display: inline; }
+
+.colon {
+  display: inline-block;
+  margin: 0 0.04em;
+  animation: colonFade 1s ease-in-out infinite;
+}
+
+@keyframes colonFade {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.15; }
+}
+
+/* ===== Weather ===== */
+.weather-section {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1vh;
+  padding: 0.6vh 3vw 0.6vh;
+  overflow: hidden;
+}
+
+.hourly,
+.daily {
+  display: grid;
+  width: 100%;
+}
+
+.hourly {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8vh 1.5vw;
+}
+.daily {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8vh 1.5vw;
+  border-top: 1px solid var(--amber-faint);
+  padding-top: 1vh;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3vh;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.cell .label {
+  font-size: clamp(0.9rem, 3.4vw, 1.3rem);
+  opacity: 0.78;
+}
+.cell .icon {
+  font-size: clamp(2rem, 9vw, 3.4rem);
+  line-height: 1;
+}
+.cell .temp {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(1.2rem, 5.4vw, 2.1rem);
+  font-weight: 300;
+}
+.cell .pop {
+  font-size: clamp(0.85rem, 3vw, 1.1rem);
+  color: var(--amber-dim);
+}
+.daily .cell .temp-range {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(0.9rem, 3.6vw, 1.4rem);
+  font-weight: 300;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
+/* ===== News ticker ===== */
+.news-section {
+  flex: 0 0 auto;
+  margin-top: auto;
+  background: var(--news-bg);
+  border-top: 1px solid var(--amber-faint);
+  height: clamp(34px, 5.5vh, 52px);
+  overflow: hidden;
+  position: relative;
+}
+
+.news-ticker {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.news-track {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 2vw;
+  font-size: clamp(1rem, 3.4vw, 1.3rem);
+  color: var(--amber);
+  opacity: 0.95;
+  animation: ticker 80s linear infinite;
+  font-weight: 400;
+}
+
+.news-track .item + .item::before {
+  content: ' ・ ';
+  color: var(--amber-dim);
+  margin: 0 0.6em;
+}
+
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ===== Gate (motion permission) ===== */
+.gate {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 50;
+  padding: 6vw;
+}
+.gate.hidden { display: none; }
+
+.gate-card {
+  text-align: center;
+  color: var(--amber);
+  max-width: 90vw;
+}
+.gate-card h1 {
+  font-size: clamp(1.4rem, 6vw, 2.4rem);
+  font-weight: 300;
+  margin-bottom: 0.8em;
+  letter-spacing: 0.08em;
+}
+.gate-card p {
+  font-size: clamp(0.9rem, 3.2vw, 1.1rem);
+  line-height: 1.6;
+  margin-bottom: 1.2em;
+  opacity: 0.9;
+}
+.gate-hint {
+  font-size: clamp(0.75rem, 2.6vw, 0.9rem) !important;
+  color: var(--amber-dim);
+  margin-top: 1.2em;
+}
+.gate-btn {
+  background: transparent;
+  color: var(--amber);
+  border: 1px solid var(--amber);
+  padding: 0.9em 2.4em;
+  font-size: clamp(0.95rem, 3.4vw, 1.1rem);
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+}
+.gate-btn:active {
+  background: var(--amber);
+  color: #000;
+}
+
+/* ===== Night dimming overlay ===== */
+.dim {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 40;
+  transition: opacity 1.2s ease;
+}
+
+/* ===== Landscape fallback ===== */
+@media (orientation: landscape) {
+  .clock {
+    font-size: clamp(3.5rem, 16vw, 12rem);
+  }
+}
