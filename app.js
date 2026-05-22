@@ -231,43 +231,6 @@
     }
   }
 
-  // ===== Fullscreen toggle =====
-  function setupFullscreen() {
-    const btn = document.getElementById('fs-btn');
-    if (!btn) return;
-
-    const isStandalone =
-      window.navigator.standalone === true ||
-      window.matchMedia('(display-mode: standalone)').matches;
-
-    const canFullscreen =
-      document.documentElement.requestFullscreen ||
-      document.documentElement.webkitRequestFullscreen;
-
-    // PWA で起動中、または API 非対応のブラウザではボタン非表示
-    if (isStandalone || !canFullscreen) {
-      btn.classList.add('hidden');
-      return;
-    }
-    btn.classList.remove('hidden');
-
-    btn.addEventListener('click', async () => {
-      try {
-        const el = document.documentElement;
-        const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
-        if (!fsEl) {
-          if (el.requestFullscreen)             await el.requestFullscreen();
-          else if (el.webkitRequestFullscreen)  await el.webkitRequestFullscreen();
-        } else {
-          if (document.exitFullscreen)             await document.exitFullscreen();
-          else if (document.webkitExitFullscreen)  await document.webkitExitFullscreen();
-        }
-      } catch (e) {
-        console.warn('[fullscreen]', e);
-      }
-    });
-  }
-
   // ===== Service Worker =====
   function registerSW() {
     // ローカル開発時は SW を無効化（CSS/JSのキャッシュ起因のずれを避けるため）
@@ -309,7 +272,6 @@
     setInterval(fetchNews,    NEWS_REFRESH_MS);
 
     startOrientation();
-    setupFullscreen();
     registerSW();
     requestWakeLock();
   }

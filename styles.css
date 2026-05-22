@@ -261,30 +261,6 @@ body {
   transition: opacity 1.2s ease;
 }
 
-/* ===== Fullscreen toggle button ===== */
-.fs-btn {
-  position: fixed;
-  top: calc(env(safe-area-inset-top, 0px) + 8px);
-  right: calc(env(safe-area-inset-right, 0px) + 8px);
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
-  color: var(--amber);
-  border: 1px solid var(--amber-faint);
-  border-radius: 8px;
-  opacity: 0.35;
-  z-index: 45;
-  cursor: pointer;
-  padding: 0;
-  font-family: inherit;
-  transition: opacity 0.2s ease;
-}
-.fs-btn:active,
-.fs-btn:hover { opacity: 0.95; }
-.fs-btn.hidden { display: none; }
 
 /* ===== Landscape fallback ===== */
 @media (orientation: landscape) {
