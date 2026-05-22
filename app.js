@@ -195,8 +195,9 @@
   function handleMotion(event) {
     const acc = event.accelerationIncludingGravity;
     if (!acc || acc.y == null) return;
-    // 縦持ち想定: y が +9〜10 なら通常、-9〜-10 なら逆さま
-    const wantsFlip = acc.y < -5;
+    // iOS の縦持ち基準: ホームボタン側を下にしたとき acc.y は -9.8 程度（重力が下向き）。
+    // 上下反対（充電端子を上）にしたときに acc.y が +5 を超える → そのときだけ 180° 回転。
+    const wantsFlip = acc.y > 5;
     if (wantsFlip === lastFlipState) {
       flipStableFrames = 0;
       return;
@@ -228,6 +229,43 @@
     } else {
       attach();
     }
+  }
+
+  // ===== Fullscreen toggle =====
+  function setupFullscreen() {
+    const btn = document.getElementById('fs-btn');
+    if (!btn) return;
+
+    const isStandalone =
+      window.navigator.standalone === true ||
+      window.matchMedia('(display-mode: standalone)').matches;
+
+    const canFullscreen =
+      document.documentElement.requestFullscreen ||
+      document.documentElement.webkitRequestFullscreen;
+
+    // PWA で起動中、または API 非対応のブラウザではボタン非表示
+    if (isStandalone || !canFullscreen) {
+      btn.classList.add('hidden');
+      return;
+    }
+    btn.classList.remove('hidden');
+
+    btn.addEventListener('click', async () => {
+      try {
+        const el = document.documentElement;
+        const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+        if (!fsEl) {
+          if (el.requestFullscreen)             await el.requestFullscreen();
+          else if (el.webkitRequestFullscreen)  await el.webkitRequestFullscreen();
+        } else {
+          if (document.exitFullscreen)             await document.exitFullscreen();
+          else if (document.webkitExitFullscreen)  await document.webkitExitFullscreen();
+        }
+      } catch (e) {
+        console.warn('[fullscreen]', e);
+      }
+    });
   }
 
   // ===== Service Worker =====
@@ -271,6 +309,7 @@
     setInterval(fetchNews,    NEWS_REFRESH_MS);
 
     startOrientation();
+    setupFullscreen();
     registerSW();
     requestWakeLock();
   }
