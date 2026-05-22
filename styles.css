@@ -164,7 +164,7 @@ body {
   margin-top: auto;
   background: var(--news-bg);
   border-top: 1px solid var(--amber-faint);
-  height: clamp(34px, 5.5vh, 52px);
+  height: clamp(64px, 10vh, 96px);
   overflow: hidden;
   position: relative;
 }
@@ -181,7 +181,7 @@ body {
   display: inline-block;
   white-space: nowrap;
   padding-left: 2vw;
-  font-size: clamp(1rem, 3.4vw, 1.3rem);
+  font-size: clamp(2rem, 6.8vw, 2.6rem);
   color: var(--amber);
   opacity: 0.95;
   animation: ticker 80s linear infinite;
