@@ -51,7 +51,7 @@ body {
   padding-right: env(safe-area-inset-right, 0px);
   padding-left: env(safe-area-inset-left, 0px);
   /* 画面下のニュースバー分の余白を確保 */
-  padding-bottom: calc(clamp(72px, 11vh, 110px) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(clamp(90px, 13vh, 140px) + env(safe-area-inset-bottom, 0px));
 }
 
 /* ===== Clock ===== */
@@ -66,7 +66,7 @@ body {
 }
 
 .date {
-  font-size: clamp(1rem, 4vw, 1.7rem);
+  font-size: clamp(1.3rem, 5.2vw, 2.1rem);
   font-weight: 300;
   letter-spacing: 0.05em;
   opacity: 0.85;
@@ -76,7 +76,7 @@ body {
 .clock {
   font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
   font-weight: 200;
-  font-size: clamp(5rem, 28vw, 18rem);
+  font-size: clamp(6rem, 32vw, 22rem);
   line-height: 0.95;
   letter-spacing: -0.04em;
   text-shadow: 0 0 22px rgba(255, 177, 59, 0.18);
@@ -138,25 +138,25 @@ body {
 }
 
 .cell .label {
-  font-size: clamp(1.05rem, 4vw, 1.6rem);
+  font-size: clamp(1.4rem, 5.4vw, 2.1rem);
   opacity: 0.85;
 }
 .cell .icon {
-  font-size: clamp(2.2rem, 10vw, 3.8rem);
+  font-size: clamp(2.8rem, 13vw, 5rem);
   line-height: 1;
 }
 .cell .temp {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(1.4rem, 6vw, 2.4rem);
+  font-size: clamp(1.8rem, 8vw, 3.2rem);
   font-weight: 300;
 }
 .cell .pop {
-  font-size: clamp(1rem, 3.6vw, 1.4rem);
+  font-size: clamp(1.3rem, 4.8vw, 1.85rem);
   color: var(--amber-dim);
 }
 .daily .cell .temp-range {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(1.05rem, 4.2vw, 1.6rem);
+  font-size: clamp(1.4rem, 5.4vw, 2.1rem);
   font-weight: 300;
   white-space: nowrap;
   letter-spacing: -0.02em;
@@ -170,7 +170,7 @@ body {
   bottom: 0;
   background: var(--news-bg);
   border-top: 1px solid var(--amber-faint);
-  height: calc(clamp(72px, 11vh, 110px) + env(safe-area-inset-bottom, 0px));
+  height: calc(clamp(90px, 13vh, 140px) + env(safe-area-inset-bottom, 0px));
   padding-bottom: env(safe-area-inset-bottom, 0px);
   overflow: hidden;
   z-index: 5;
@@ -188,10 +188,10 @@ body {
   display: inline-block;
   white-space: nowrap;
   padding-left: 2vw;
-  font-size: clamp(2.6rem, 9vw, 3.4rem);
+  font-size: clamp(3.2rem, 11vw, 4.4rem);
   color: var(--amber);
   opacity: 0.95;
-  animation: ticker 90s linear infinite;
+  animation: ticker 100s linear infinite;
   font-weight: 400;
 }
 
