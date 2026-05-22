@@ -1,4 +1,4 @@
-const CACHE_NAME = 'okidokei-v8';
+const CACHE_NAME = 'okidokei-v9';
 const STATIC_ASSETS = [
   './',
   './index.html',

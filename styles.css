@@ -162,6 +162,20 @@ body {
   letter-spacing: -0.02em;
 }
 
+/* 時間別 (2時間刻み・1行4セル) は週間より 1.5 倍大きく */
+.hourly .cell .label {
+  font-size: clamp(2.1rem, 8vw, 3.2rem);
+}
+.hourly .cell .icon {
+  font-size: clamp(4.2rem, 19vw, 7.5rem);
+}
+.hourly .cell .temp {
+  font-size: clamp(2.7rem, 12vw, 4.8rem);
+}
+.hourly .cell .pop {
+  font-size: clamp(1.95rem, 7vw, 2.75rem);
+}
+
 /* ===== News ticker (画面下に絶対固定) ===== */
 .news-section {
   position: fixed;
