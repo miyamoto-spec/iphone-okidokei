@@ -14,5 +14,7 @@ clock-app-preview*.png
 node_modules/
 npm-debug.log*
 
-# Local screenshots
+# Local screenshots / user-pasted images
 スクリーンショット*.png
+*.jpg
+*.jpeg
