@@ -171,7 +171,7 @@
         (it) => `<span class="item">${escapeHTML(it.title)}</span>`
       );
       if (items.length) {
-        $news.innerHTML = items.join('');
+        setNewsTicker(items.join(''));
       } else {
         $news.textContent = 'ニュースを取得できませんでした';
       }
@@ -179,6 +179,15 @@
       console.error('[news]', e);
       $news.textContent = 'ニュースを取得できませんでした';
     }
+  }
+
+  // 継ぎ目なしマーキー: 内容を2連結 + アニメーションを 0% から再生
+  function setNewsTicker(itemsHTML) {
+    const sep = '<span class="item-sep"></span>';
+    $news.innerHTML = itemsHTML + sep + itemsHTML;
+    $news.style.animation = 'none';
+    void $news.offsetWidth; // reflow を強制してアニメーションをリセット
+    $news.style.animation = '';
   }
 
   function escapeHTML(s) {

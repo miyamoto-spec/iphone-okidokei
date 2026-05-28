@@ -209,15 +209,17 @@ body {
   font-weight: 400;
 }
 
-.news-track .item + .item::before {
+.news-track .item + .item::before,
+.news-track .item-sep {
   content: ' ・ ';
   color: var(--amber-dim);
   margin: 0 0.6em;
 }
 
+/* 2連結したコンテンツの 1 個分(=全体の 50%) 送ると見た目はループ開始位置と同一 → 継ぎ目なし */
 @keyframes ticker {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  100% { transform: translateX(-50%); }
 }
 
 /* ===== Gate (motion permission) ===== */
